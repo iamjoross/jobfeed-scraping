@@ -1,11 +1,11 @@
 # Programming assignment – Jobfeed Python developer
 
-Your task is to write an application (in Python) that runs daily and synchronizes data between two external systems: an AWS S3 bucket and a  RESTful API. You do not need to implement the REST API. 
+Your task is to write an application (in Python) that runs daily and synchronizes data between two external systems: an AWS S3 bucket and a  RESTful API. You do not need to implement the REST API.
 
-XML files with all active job advertisements from theguardian.com website are delivered every day to S3 bucket. Daily file is accessible via URL in this format: https://jobfeed-assignment-data.s3.eu-west-1.amazonaws.com/Jobs.%Y-%m-%d.0.xml (e.g. https://jobfeed-assignment-data.s3.eu-west-1.amazonaws.com/Jobs.2022-07-07.0.xml for July 7 2022). 
+XML files with all active job advertisements from theguardian.com website are delivered every day to S3 bucket. Daily file is accessible via URL in this format: https://jobfeed-assignment-data.s3.eu-west-1.amazonaws.com/Jobs.%Y-%m-%d.0.xml (e.g. https://jobfeed-assignment-data.s3.eu-west-1.amazonaws.com/Jobs.2022-07-07.0.xml for July 7 2022).
 
 Your solution should download this data daily and ensure it is synchronized with an external API.
-	
+
 ## Requirements
 
 * Newly added jobs are uploaded via API (HTTP POST)
