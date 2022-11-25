@@ -4,7 +4,7 @@ from flask_apscheduler import APScheduler
 from flask_restful import Api
 from config import PORT
 from jobs.job import JobsResource, JobResource
-from jobs.board import JobBoardResource
+from jobs.board import JobBoardResource, JobBoardsResource
 
 from config import Config
 
@@ -13,6 +13,7 @@ def create_app():
     app.config.from_object(Config())
 
     api = Api(app)
+    api.add_resource(JobBoardsResource, '/job-boards/')
     api.add_resource(JobBoardResource, '/job-boards/<job_board_id>')
     api.add_resource(JobsResource, '/jobs/')
     api.add_resource(JobResource, '/job/<job_id>')

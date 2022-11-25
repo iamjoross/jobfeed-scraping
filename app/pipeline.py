@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import json
 import logging
 from multiprocessing import cpu_count
 from multiprocessing.pool import Pool
@@ -38,6 +39,8 @@ class Pipeline:
   @staticmethod
   def _pipeline(job_board):
     date = get_date_yesterday()
+    job_board = job_board.replace("'", '"')
+    job_board = json.loads(job_board)
 
     filename = job_board['filename_format'].format(year=date[0], month=date[1],date=date[2])
     url = f"{job_board['url']}{filename}"

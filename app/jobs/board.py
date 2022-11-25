@@ -20,11 +20,23 @@ class JobBoard:
   @staticmethod
   def get_all(url)->list[dict[str, Any]]:
     response = requests.get(f"{url}/all")
+    print(response.json())
     response.raise_for_status()
     return response.json()
 
 parser = reqparse.RequestParser()
 parser.add_argument('job_board')
+
+class JobBoardsResource(Resource):
+    def post(self):
+      try:
+        args = parser.parse_args()
+        payload = args['job_board']
+        JobBoard.add(JOB_BOARD_URL, payload)  # type: ignore
+        return payload, 201
+      except Exception as err:
+        logging.error("An exception occurred ::", err)
+        return {'error': err}, 500
 
 class JobBoardResource(Resource):
     def get(self, job_board_id):
@@ -36,13 +48,4 @@ class JobBoardResource(Resource):
         return {'error': err}, 500
 
 
-    def post(self):
-      try:
-        args = parser.parse_args()
-        payload = args['job_board']
-        JobBoard.add(JOB_BOARD_URL, payload)  # type: ignore
-        return payload, 201
-      except Exception as err:
-        logging.error("An exception occurred ::", err)
-        return {'error': err}, 500
 
